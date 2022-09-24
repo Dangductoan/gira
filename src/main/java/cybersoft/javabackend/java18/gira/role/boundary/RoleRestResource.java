@@ -1,5 +1,7 @@
 package cybersoft.javabackend.java18.gira.role.boundary;
 
+import cybersoft.javabackend.java18.gira.common.util.ResponseUtils;
+import cybersoft.javabackend.java18.gira.role.dto.RoleDTO;
 import cybersoft.javabackend.java18.gira.role.model.Role;
 import cybersoft.javabackend.java18.gira.role.service.RoleService;
 import org.springframework.http.HttpStatus;
@@ -15,8 +17,9 @@ public class RoleRestResource {
         this.roleService = roleService;
     }
     @GetMapping
-    public Object findAll() {
-        return new ResponseEntity<>(roleService.findAll(), HttpStatus.OK);
+    public Object findAll(){
+
+        return ResponseUtils.get(roleService.findAllDto(RoleDTO.class), HttpStatus.OK);
     }
     @PostMapping
     public Object save(@RequestBody Role role) {
