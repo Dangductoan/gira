@@ -19,7 +19,7 @@ spring:
     enabled: false
     driver-class-name: org.postgresql.Driver
 
-springdoc:
+spring-doc:
   swagger-ui:
     path: swagger-ui.html
     operationsSorter: method

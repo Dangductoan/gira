@@ -54,11 +54,18 @@ public class BaseEntity implements Serializable {
     @Column(name = Columns.LAST_MODIFIED_BY)
     protected String lastModifiedBy;
 
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern =DateTimeUtils.DATE_TIME_FORMAT)
     @DateTimeFormat(pattern = DateTimeUtils.DATE_TIME_FORMAT)
     @LastModifiedDate
     @Column(name = Columns.LAST_MODIFIED_AT)
     protected LocalDateTime lastModifiedAt;
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.id.equals(((BaseEntity) obj).id);
+    }
+
     //Inner class
     @UtilityClass
     static class Columns {
