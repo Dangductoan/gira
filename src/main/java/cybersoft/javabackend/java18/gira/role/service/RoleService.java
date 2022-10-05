@@ -19,6 +19,7 @@ public interface RoleService extends GenericService<Role, RoleDTO, UUID> {
 
     Role update(Role role,String code);
     void deleteByCode(String code);
+    RoleDTO save(RoleDTO roleDTO);
 }
 @Service
 @Transactional
@@ -52,22 +53,22 @@ class RoleServiceImpl implements RoleService {
         return roleRepository.findAll();
     }
 
-    @Override
-    public Role save(Role role) {
-        return roleRepository.save(role);
-    }
 
     @Override
     public Role update(Role role, String code) {
-        Role curRole = roleRepository.findByCode(code);
-        curRole.setName(role.getName());
-        curRole.setDescription(role.getDescription());
-        return roleRepository.save(curRole);
+        return null;
     }
 
     @Override
     public void deleteByCode(String code) {
         roleRepository.deleteByCode(code);
 
+    }
+
+    @Override
+    public RoleDTO save(RoleDTO roleDTO) {
+        Role model = mapper.map(roleDTO,Role.class);
+        Role saveModel = roleRepository.save(model);
+        return mapper.map(saveModel,RoleDTO.class);
     }
 }
