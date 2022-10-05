@@ -25,6 +25,7 @@ public interface GenericService<T extends BaseEntity,D,I> {
                 .map(model -> getMapper().map(model, clazz))
                 .collect(Collectors.toList());
     }
+
     default Optional<T> findById(I id) {
         return getRepository().findById(id);
     }
