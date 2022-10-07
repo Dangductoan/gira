@@ -32,20 +32,31 @@ public class Role extends BaseEntity {
     @NotBlank
     private String description;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},fetch = FetchType.LAZY)
     @JoinTable(
             name = RoleEntity.RoleMappedOperation.JOIN_TABLE,
             joinColumns = @JoinColumn(name = RoleEntity.RoleMappedOperation.JOIN_TABLE_ROLE_ID),
             inverseJoinColumns = @JoinColumn(name = RoleEntity.RoleMappedOperation.JOIN_TABLE_SERVICE_ID)
     )
     private Set<Operation> operations = new LinkedHashSet<>();
-    @ManyToMany(cascade ={CascadeType.MERGE,CascadeType.PERSIST} )
+    @ManyToMany(cascade ={CascadeType.MERGE,CascadeType.PERSIST},fetch = FetchType.LAZY)
     @JoinTable(name="g_role_user_groups",
             joinColumns = @JoinColumn(name="role_id"),
             inverseJoinColumns = @JoinColumn(name="user_groups_id")
     )
     private Set<UserGroup> userGroups = new LinkedHashSet<>();
 
+    public void removeService(Operation operation) {
+        //relationship sync
+        operations.remove(operation);
+        operation.getRoles().remove(this);//this is role
+    }
+    public Role addService(Operation operation) {
+        //relationship sync
+        this.operations.add(operation);
+        operation.getRoles().add(this);
+        return this;
+    }
     @Override
     public int hashCode() {
         return getClass().hashCode();

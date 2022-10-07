@@ -12,6 +12,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class RoleDTO {
     private UUID id;
     @Size(min = 5, max = 100, message = "{role.name.size}")
