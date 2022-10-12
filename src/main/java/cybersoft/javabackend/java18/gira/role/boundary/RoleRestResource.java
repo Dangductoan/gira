@@ -15,7 +15,8 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/roles")
+@RequestMapping("api/v1/roles")
+@CrossOrigin
 public class RoleRestResource {
     private final RoleService roleService;
 
@@ -45,6 +46,15 @@ public class RoleRestResource {
                                 ) {
         return ResponseUtils.get(
                 roleService.addOperations(ids,roleId), HttpStatus.OK
+        );
+    }
+    @PostMapping("{role-id}/add-user-groups")
+    public Object addUserGroups(
+            @RequestBody List<UUID> ids,
+            @PathVariable("role-id") UUID roleId){
+        return ResponseUtils.get(
+                roleService.addUserGroups(roleId, ids)
+                , HttpStatus.OK
         );
     }
 }

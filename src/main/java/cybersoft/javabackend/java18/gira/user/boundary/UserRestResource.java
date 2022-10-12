@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("api/v1/users")
+@CrossOrigin
 public class UserRestResource {
     private final UserService userService;
 

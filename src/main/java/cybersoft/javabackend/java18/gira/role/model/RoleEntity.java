@@ -17,7 +17,6 @@ public class RoleEntity {
         public static final String TABLE_NAME = "G_OPERATION";
         public static final String NAME = "G_NAME";
         public static final String DESCRIPTION = "G_DESCRIPTION";
-        public static final String CODE = "G_CODE";
         public static final String TYPE = "G_TYPE";
     };
 

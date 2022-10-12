@@ -1,5 +1,7 @@
 server:
   port: 8088
+  servlet:
+    context-path: /gira
 
 spring:
   security:
@@ -23,3 +25,6 @@ spring-doc:
   swagger-ui:
     path: swagger-ui.html
     operationsSorter: method
+rsa:
+  private-key: classpath:certs/private.pem
+  public-key: classpath:certs/public.pem

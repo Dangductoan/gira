@@ -26,10 +26,6 @@ public class Operation extends BaseEntity {
     @Length(min = 5,max = 100,message = "Role name must have length between {min} and {max}")
     private String name;
 
-    @Column(name = RoleEntity.Operation.CODE)
-    @Length(min=3,max=10,message = "Role code must have length between {min} and {max}" )
-    private String code;
-
     @Column(name = RoleEntity.Operation.DESCRIPTION)
     @NotBlank
     private String description;
