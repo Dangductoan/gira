@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/usergroups")
+@RequestMapping("api/v1/usergroups")
+@CrossOrigin
 public class UserGroupRestResoucrce {
     private final UserGroupService userGroupService;
 

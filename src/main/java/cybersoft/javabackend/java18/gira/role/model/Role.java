@@ -51,11 +51,11 @@ public class Role extends BaseEntity {
         operations.remove(operation);
         operation.getRoles().remove(this);//this is role
     }
-    public Role addService(Operation operation) {
+    public void addService(Operation operation) {
         //relationship sync
         this.operations.add(operation);
         operation.getRoles().add(this);
-        return this;
+
     }
     @Override
     public int hashCode() {
@@ -70,5 +70,11 @@ public class Role extends BaseEntity {
            return false;
        Role role = (Role) obj;
        return this.id != null && Objects.equals(this.id,role.id);
+    }
+
+    public void addUserGroup(UserGroup userGroup) {
+        this.userGroups.add(userGroup);
+        userGroup.getRoles().add(this);
+
     }
 }

@@ -58,7 +58,12 @@ class UserGroupServiceImpl implements UserGroupService {
         UserGroup userGroup = userGroupRepository.findById(userGroupID)
                 .orElseThrow(() -> new ValidationException("UserGroup is not existed."));
         List<User> users = userService.findByIds(ids);
-        users.forEach(userGroup::addUser);
+        users.forEach(user -> {
+            if(!userGroup.getUsers().contains(user))
+                userGroup.addUser(user);
+            throw new RuntimeException("user was added in userGroup");
+        });
+       // users.forEach(userGroup::addUser);
         return giraMapper.map(userGroup,UserGroupWithUsersDTO.class);
     }
 }
